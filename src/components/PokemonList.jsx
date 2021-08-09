@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { getPokemons } from "../features/api";
 import { PokemonCard } from "./PokemonCard";
 
-export const PokemonList = ({ setNextChunk }) => {
-  const [pokemonList, setPokimonList] = useState({});
-
-  useEffect(() => {
-    getPokemons("https:pokeapi.co/api/v2/pokemon/?limit=12")
-      .then((response) => response.json())
-      .then((data) => {
-        setPokimonList(data.results);
-        setNextChunk(data.next);
-      });
-  }, []);
-
+export const PokemonList = ({ pokemons, setSelectedPokemon }) => {
   return (
-    <div>
-      {pokemonList &&
-        pokemonList.map((pokemon, idx) => (
+    <div className="pokemon-list">
+      {pokemons &&
+        pokemons.map((pokemon, idx) => (
           <PokemonCard
             key={`${pokemon.name}-${idx}`}
             name={pokemon.name}
             url={pokemon.url}
+            setSelectedPokemon={setSelectedPokemon}
           />
         ))}
     </div>
