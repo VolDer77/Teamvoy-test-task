@@ -1,15 +1,17 @@
 import { PokemonCard } from "./PokemonCard";
 
-export const PokemonList = ({ pokemons, setSelectedPokemon }) => {
+export const PokemonList = ({ pokemons, selectPokemon }) => {
   return (
     <div className="pokemon-list">
       {pokemons &&
-        pokemons.map((pokemon, idx) => (
+        pokemons.map((pokemon) => (
           <PokemonCard
-            key={`${pokemon.name}-${idx}`}
+            key={pokemon.id}
+            id={pokemon.id}
+            types={pokemon.types}
             name={pokemon.name}
-            url={pokemon.url}
-            setSelectedPokemon={setSelectedPokemon}
+            url={pokemon.imageUrl}
+            selectPokemon={selectPokemon}
           />
         ))}
     </div>

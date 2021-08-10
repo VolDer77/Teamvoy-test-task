@@ -1,4 +1,3 @@
-import React from "react";
 import { capitalLetter } from "../utils";
 
 export const PokemonInfo = ({ pokemon }) => {

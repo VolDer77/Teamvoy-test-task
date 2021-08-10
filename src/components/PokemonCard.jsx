@@ -1,47 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { sortStats } from "../utils";
+import { capitalLetter } from "../utils";
 
-export const PokemonCard = ({ name, url, setSelectedPokemon }) => {
-  const [pokemonInfo, setPokemonInfo] = useState({});
+export const PokemonCard = (props) => {
+  const { name, id, types, url, selectPokemon } = props;
 
-  useEffect(() => {
-    async function getPokemonInfo(url) {
-      const response = await fetch(url);
-      const data = await response.json();
-      const sortedStats = sortStats(data.stats);
-      setPokemonInfo({
-        stats: sortedStats,
-        types: data.types,
-        id: data.id,
-        imageUrl: data.sprites.front_default,
-        totalMoves: data.moves.length,
-      });
-    }
-    getPokemonInfo(url);
-  }, []);
-
-  function makeTypeColor(types) {
-    const color = {};
+  function makeTypeColor(type) {
+    const colors = {
+      grass: "#70e000",
+      fire: "#ec7672",
+      electric: "#ffde7b",
+      poison: "#c5b3cf",
+      flying: "#d8e2dc",
+      normal: "#ccd5ae",
+      bug: "#718355",
+      water: "#168aad",
+      ground: "#936639",
+      fairy: "#ff9100",
+    };
+    return colors[type];
   }
 
   function getPokemonInfo() {
-    setSelectedPokemon({
-      name,
-      ...pokemonInfo,
-    });
+    selectPokemon(id);
   }
 
   return (
     <div className="pokemon-card" onClick={getPokemonInfo}>
-      <img
-        alt="pokemon-img"
-        className="pokemon-img"
-        src={pokemonInfo.imageUrl}
-      />
+      <img alt="pokemon-img" className="pokemon-img" src={url} />
       <h3>{name}</h3>
-      {pokemonInfo.types?.map(({ type }) => (
-        <span>{type.name}</span>
-      ))}
+      <div className="pokemon-types-wrapper">
+        {types?.map(({ type }, idx) => (
+          <span
+            key={`${type}-${idx}`}
+            className="pokemon-type"
+            style={{ backgroundColor: makeTypeColor(type.name) }}
+          >
+            {capitalLetter(type.name)}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
