@@ -1,6 +1,7 @@
-import { capitalLetter } from "../utils";
+import { capitalLetter, sortByStats } from "../utils";
 
 export const PokemonInfo = ({ pokemon }) => {
+  const sortedStats = sortByStats(pokemon.stats);
   return (
     <div className="pokemon-info">
       <img
@@ -26,7 +27,7 @@ export const PokemonInfo = ({ pokemon }) => {
                 .join(", ")}
             </td>
           </tr>
-          {pokemon.stats.map((item, idx) => (
+          {sortedStats.map((item, idx) => (
             <tr key={`${item.base_stat}-${idx}`}>
               <td>{capitalLetter(item.stat.name)}</td>
               <td>{item.base_stat}</td>

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { capitalLetter, sortByStats, sortByTypes } from "../utils";
+import { capitalLetter } from "../utils";
 
 export const useFetch = () => {
   const [pokemons, setPokemons] = useState([]);
   const [nextChunk, setNextChunk] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   async function getPokemons(url) {
     try {
@@ -18,16 +19,14 @@ export const useFetch = () => {
         return {
           name: capitalLetter(value.name),
           types: value.types,
-          stats: sortByStats(value.stats),
+          stats: value.stats,
           imageUrl: value.sprites.front_default,
           totalMoves: value.moves.length,
           id: value.id,
         };
       });
-      setPokemons((state) => {
-        const sortedPokemons = [...state, ...pokemons].sort(sortByTypes);
-        return sortedPokemons;
-      });
+      setPokemons((state) => [...state, ...pokemons]);
+      setLoading(false);
       setNextChunk(data.next);
     } catch (error) {
       setError(error);
@@ -39,7 +38,9 @@ export const useFetch = () => {
       pokemons,
       nextChunk,
       error,
+      loading,
     },
+    setPokemons,
     getPokemons,
   ];
 };

@@ -6,7 +6,7 @@ export const PokemonList = ({ pokemons, selectPokemon }) => {
       {pokemons &&
         pokemons.map((pokemon) => (
           <PokemonCard
-            key={pokemon.id}
+            key={`${pokemon.name}-${pokemon.id}`}
             id={pokemon.id}
             types={pokemon.types}
             name={pokemon.name}
