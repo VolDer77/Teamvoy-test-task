@@ -15,15 +15,14 @@
   align-items: center;
 }
 
-.pokemon-list-wrapper{
+/* .pokemon-list-wrapper{
   flex-basis: 60%;
   margin-right: 40px;
-}
+} */
 
 .pokemon-list{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  /* з конкретної ширини у вищій строчці  поставити 3 колонки, для маленького екрану завжди ауто-фіт */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  
   margin: 30px auto;
   grid-gap: 10px;
 }
@@ -51,6 +50,7 @@
   align-items: center;
   flex-direction: column;
   border: 1px solid #000;
+  padding: 10px;
   cursor: pointer;
   transition: .3s;
 }
@@ -64,13 +64,22 @@
   width: 150px;
 }
 
+.pokemon-type{
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.pokemon-type + .pokemon-type{
+  margin-left: 5px;
+}
+
 .pokemon-info{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border: 1px solid #000;
-  min-width: 250px;
   padding: 10px;
 }
 
@@ -87,4 +96,73 @@ td {
 table{
   text-align: center;
   border-spacing: 0;
+}
+
+@media (min-width: 1200px) {
+  .pokemon-list{
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .pokemon-info{
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .pokemon-list{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+}
+
+@media (min-width: 577px) {
+  .pokemon-info{
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .pokemon-list-wrapper{
+    max-width: 50%;
+  }
+
+  td {
+    padding: 3px 8px;
+  }
+}
+
+@media (max-width: 469px) {
+  .section-content{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header{
+    margin-bottom: 20px;
+    width: 80%;
+    font-size: 30px;
+  }
+
+  .pokemon-list-wrapper{
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .pokemon-list{
+    grid-template-columns: repeat(1, minmax(200px, 300px));
+  }
+
+  .pokemon-info{
+    order: -1;
+  }
+}
+
+@media (min-width: 470px){
+  .pokemon-list-wrapper{
+    flex-basis: 60%;
+    margin-right: 40px;
+  }
 }
