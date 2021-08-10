@@ -27,7 +27,7 @@
   grid-gap: 10px;
 }
 
-.btn-load{
+.btn{
   color: #fff;
   background-color: #008CFF;
   border: 0;
@@ -40,7 +40,7 @@
   transition: .3s;
 }
 
-.btn-load:hover{
+.btn:hover{
   background-color: #087cdb;
 }
 
@@ -122,6 +122,16 @@ table{
   }
 }
 
+@media (min-width: 768px) {
+  .btn-group{
+    display: flex;
+  }
+
+  .btn + .btn{
+    margin-left: 10px;
+  }
+}
+
 @media (max-width: 767px) {
 
   .pokemon-list-wrapper{
@@ -130,6 +140,10 @@ table{
 
   td {
     padding: 3px 8px;
+  }
+
+  .btn + .btn{
+    margin-top: 10px;
   }
 }
 
