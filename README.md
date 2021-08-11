@@ -1,3 +1,11 @@
+# Instruction how to run the app
+
+## 1. git clone https://github.com/VolDer77/teamvoy-test-task.git
+
+## 2. yarn install
+
+## 3. yarn start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
