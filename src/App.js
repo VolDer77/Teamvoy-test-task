@@ -12,7 +12,7 @@ function App() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   useEffect(() => {
-    getPokemons("https:pokeapi.co/api/v2/pokemon/?limit=12");
+    getPokemons("https://pokeapi.co/api/v2/pokemon/?limit=12");
   }, []);
 
   function selectPokemon(id) {
